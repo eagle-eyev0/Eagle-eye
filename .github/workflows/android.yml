@@ -32,7 +32,9 @@ jobs:
         run: ./gradlew assembleDebug
 
       - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: eagle-eye-debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+  uses: actions/upload-artifact@v4
+  with:
+    name: eagle-eye-debug-apk
+    path: app/build/outputs/apk/debug/app-debug.apk
+    if-no-files-found: error
+*.apk
