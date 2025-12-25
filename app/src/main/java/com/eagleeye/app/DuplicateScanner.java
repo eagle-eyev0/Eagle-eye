@@ -1,22 +1,25 @@
 package com.eagleeye.app;
 
-import android.os.Environment;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DuplicateScanner {
 
-    public static int scanDuplicates() {
-        File downloads = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOWNLOADS);
-        File dcim = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DCIM);
+    // Termux-safe locations (usually accessible without special permissions)
+    private static final String[] ROOTS = new String[] {
+            "/sdcard/Download",
+            "/sdcard/Documents",
+            "/sdcard/DCIM",
+            "/sdcard/Pictures"
+    };
 
+    public static int scanDuplicates() {
         Map<String, Integer> seen = new HashMap<>();
-        scanDir(downloads, seen);
-        scanDir(dcim, seen);
+
+        for (String path : ROOTS) {
+            scanDir(new File(path), seen);
+        }
 
         int duplicates = 0;
         for (int count : seen.values()) {
@@ -33,8 +36,11 @@ public class DuplicateScanner {
 
         for (File f : files) {
             if (f.isDirectory()) continue;
+
+            // Key: name + size (fast). Later we can add hash for accuracy.
             String key = f.getName() + "_" + f.length();
-            seen.put(key, seen.getOrDefault(key, 0) + 1);
+            Integer prev = seen.get(key);
+            seen.put(key, (prev == null) ? 1 : (prev + 1));
         }
     }
 }
