@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="#070A12">
+    android:background="#050B10">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,224 +10,75 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- TOP BAR -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:id="@+id/txtTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="EAGLE EYE"
-                android:textColor="#7EF9FF"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:letterSpacing="0.08"/>
-
-            <TextView
-                android:id="@+id/txtMode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ONLINE"
-                android:textColor="#00FF9D"
-                android:textStyle="bold"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"
-                android:background="#1A1F2E"/>
-        </LinearLayout>
-
-        <!-- SUBTITLE / STATUS LINE -->
+        <!-- TITLE -->
         <TextView
-            android:id="@+id/txtSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Privacy telemetry • Permissions • Risk • Storage"
-            android:textColor="#A7B3D1"
-            android:textSize="13sp"/>
+            android:text="EAGLE EYE"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#00FFAA"
+            android:gravity="center"
+            android:letterSpacing="0.2"/>
 
-        <!-- “HUD” CARD -->
-        <LinearLayout
+        <!-- RISK SCORE -->
+        <TextView
+            android:id="@+id/txtRiskScore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:background="#0E1322">
+            android:text="--"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:textColor="#00FF00"
+            android:gravity="center"
+            android:paddingTop="12dp"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SYSTEM OVERVIEW"
-                android:textColor="#7EF9FF"
-                android:textStyle="bold"
-                android:letterSpacing="0.06"
-                android:textSize="14sp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal">
-
-                <!-- Risk -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="12dp"
-                    android:background="#121A2E">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="RISK"
-                        android:textColor="#A7B3D1"
-                        android:textSize="12sp"/>
-
-                    <TextView
-                        android:id="@+id/txtRiskScore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="--"
-                        android:textColor="#FF4D6D"
-                        android:textSize="22sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-
-                <!-- Mic -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="vertical"
-                    android:padding="12dp"
-                    android:background="#121A2E">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="MIC"
-                        android:textColor="#A7B3D1"
-                        android:textSize="12sp"/>
-
-                    <TextView
-                        android:id="@+id/txtMicStatus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="SCAN"
-                        android:textColor="#00FF9D"
-                        android:textSize="18sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-
-                <!-- Storage -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="vertical"
-                    android:padding="12dp"
-                    android:background="#121A2E">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="DUPLICATES"
-                        android:textColor="#A7B3D1"
-                        android:textSize="12sp"/>
-
-                    <TextView
-                        android:id="@+id/txtDupCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="--"
-                        android:textColor="#7EF9FF"
-                        android:textSize="18sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Quick Actions -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="QUICK ACTIONS"
-                android:textColor="#7EF9FF"
-                android:textStyle="bold"
-                android:letterSpacing="0.06"
-                android:textSize="14sp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/btnScanPerms"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="12dp"
-                    android:text="SCAN PERMISSIONS"
-                    android:textColor="#071018"
-                    android:textStyle="bold"
-                    android:background="#7EF9FF"/>
-
-                <TextView
-                    android:id="@+id/btnScanDup"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:padding="12dp"
-                    android:text="SCAN DUPLICATES"
-                    android:textColor="#071018"
-                    android:textStyle="bold"
-                    android:background="#00FF9D"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- TOP RISKY APPS (placeholder list area) -->
-        <LinearLayout
+        <TextView
+            android:id="@+id/txtMicStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:background="#0E1322">
+            android:text="IDLE"
+            android:textColor="#66FFCC"
+            android:gravity="center"
+            android:paddingBottom="12dp"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TOP RISKY APPS"
-                android:textColor="#FF4D6D"
-                android:textStyle="bold"
-                android:letterSpacing="0.06"
-                android:textSize="14sp"/>
+        <!-- ACTION BUTTONS -->
+        <Button
+            android:id="@+id/btnScanPerms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SCAN PERMISSIONS"
+            android:textColor="#00FFAA"
+            android:backgroundTint="#102020"/>
 
-            <TextView
-                android:id="@+id/txtRiskListHint"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="(Next step: we will populate this with the permission scanner + risk engine)"
-                android:textColor="#A7B3D1"
-                android:textSize="13sp"/>
-        </LinearLayout>
+        <Button
+            android:id="@+id/btnScanDup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SCAN DUPLICATES"
+            android:textColor="#00FFAA"
+            android:backgroundTint="#102020"
+            android:layout_marginTop="8dp"/>
 
+        <!-- STATS -->
+        <TextView
+            android:id="@+id/txtDupCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="--"
+            android:textColor="#AAAAAA"
+            android:gravity="center"
+            android:paddingTop="8dp"/>
+
+        <!-- LOG PANEL -->
+        <TextView
+            android:id="@+id/txtRiskListHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Awaiting scan…"
+            android:textColor="#66FF66"
+            android:textSize="14sp"
+            android:paddingTop="12dp"
+            android:fontFamily="monospace"/>
     </LinearLayout>
 </ScrollView>
