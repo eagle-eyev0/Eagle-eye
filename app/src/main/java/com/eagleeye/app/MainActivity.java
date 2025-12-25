@@ -9,8 +9,13 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
-    private TextView txtRiskScore, txtMicStatus, txtDupCount, txtRiskListHint;
-    private Button btnScanPerms, btnScanDup;
+    private TextView txtRiskScore;
+    private TextView txtMicStatus;
+    private TextView txtDupCount;
+    private TextView txtRiskListHint;
+
+    private Button btnScanPerms;
+    private Button btnScanDup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,67 +24,46 @@ public class MainActivity extends Activity {
 
         txtRiskScore = findViewById(R.id.txtRiskScore);
         txtMicStatus = findViewById(R.id.txtMicStatus);
-        txtDupCount = findViewById(R.id.txtDupCount);
+        txtDupCount  = findViewById(R.id.txtDupCount);
         txtRiskListHint = findViewById(R.id.txtRiskListHint);
 
         btnScanPerms = findViewById(R.id.btnScanPerms);
-        btnScanDup = findViewById(R.id.btnScanDup);
+        btnScanDup   = findViewById(R.id.btnScanDup);
 
-        // default UI
         txtRiskScore.setText("--");
         txtMicStatus.setText("IDLE");
         txtDupCount.setText("--");
-        txtRiskListHint.setText("Ready.");
 
+        // Permissions scan
         btnScanPerms.setOnClickListener(v -> runPermissionScan());
 
-        btnScanDup.setOnClickListener(v ->
-                txtRiskListHint.setText("Duplicate scan coming next step…")
-        );
+        // ✅ Duplicate scan (wired)
+        btnScanDup.setOnClickListener(v -> {
+            txtRiskListHint.setText("Scanning duplicates...");
+            int dups = DuplicateScanner.scanDuplicates();
+            txtDupCount.setText(String.valueOf(dups));
+            txtRiskListHint.setText("Duplicate scan complete");
+        });
     }
 
     private void runPermissionScan() {
         txtMicStatus.setText("SCANNING...");
 
-        List<AppScanner.AppPermReport> reports = AppScanner.scanLaunchableApps(this);
+        List<AppScanner.AppPermReport> reports =
+                AppScanner.scanLaunchableApps(this);
 
-        int totalApps = reports.size();
-        int riskyApps = 0;
-        int totalRiskScore = 0;
+        int total = reports.size();
+        int risky = 0;
 
-        StringBuilder top = new StringBuilder();
-
-        int shown = 0;
         for (AppScanner.AppPermReport r : reports) {
-            if (r.dangerousPerms == null || r.dangerousPerms.isEmpty()) continue;
-
-            riskyApps++;
-
-            RiskEngine.RiskResult rr = RiskEngine.scoreFromDangerousPerms(r.dangerousPerms);
-            totalRiskScore += rr.score;
-
-            if (shown < 6) {
-                top.append("• ")
-                        .append(r.label)
-                        .append("  [")
-                        .append(rr.level)
-                        .append("]  ")
-                        .append(r.dangerousPerms.toString())
-                        .append("\n");
-                shown++;
+            if (!r.dangerousPerms.isEmpty()) {
+                risky++;
             }
         }
 
-        int avg = (riskyApps == 0) ? 0 : (totalRiskScore / riskyApps);
-
-        txtRiskScore.setText(String.valueOf(avg));
-        txtDupCount.setText(String.valueOf(totalApps));
+        int score = total == 0 ? 0 : (risky * 100 / total);
+        txtRiskScore.setText(String.valueOf(score));
         txtMicStatus.setText("DONE");
-
-        if (top.length() == 0) {
-            txtRiskListHint.setText("No risky permissions found in launchable apps.");
-        } else {
-            txtRiskListHint.setText(top.toString().trim());
-        }
+        txtRiskListHint.setText("Apps with risky permissions: " + risky);
     }
 }
