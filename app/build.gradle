@@ -1,0 +1,25 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace "com.eagleeye.app"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.eagleeye.app"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "0.1-alpha"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+}
