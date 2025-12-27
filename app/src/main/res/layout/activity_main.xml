@@ -10,7 +10,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- TITLE -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,10 +17,8 @@
             android:textSize="26sp"
             android:textStyle="bold"
             android:textColor="#00FFAA"
-            android:gravity="center"
-            android:letterSpacing="0.2" />
+            android:gravity="center" />
 
-        <!-- RISK SCORE -->
         <TextView
             android:id="@+id/txtRiskScore"
             android:layout_width="match_parent"
@@ -42,25 +39,26 @@
             android:gravity="center"
             android:paddingBottom="12dp" />
 
-        <!-- ACTION BUTTONS -->
         <Button
             android:id="@+id/btnScanPerms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SCAN PERMISSIONS"
-            android:textColor="#00FFAA"
-            android:backgroundTint="#102020" />
+            android:text="SCAN PERMISSIONS" />
 
         <Button
             android:id="@+id/btnScanDup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SCAN DUPLICATES"
-            android:textColor="#00FFAA"
-            android:backgroundTint="#102020"
             android:layout_marginTop="8dp" />
 
-        <!-- DUPLICATE COUNT -->
+<Button
+    android:id="@+id/btnPickFolder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="PICK FOLDER"
+    android:layout_marginTop="8dp" />
+
         <TextView
             android:id="@+id/txtDupCount"
             android:layout_width="match_parent"
@@ -70,18 +68,13 @@
             android:gravity="center"
             android:paddingTop="8dp" />
 
-        <!-- LOG / HUD PANEL -->
         <TextView
             android:id="@+id/txtRiskListHint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Awaiting scan…"
-            android:textColor="#66FF66"
-            android:textSize="14sp"
-            android:paddingTop="12dp"
-            android:layout_marginTop="12dp"
-            android:fontFamily="monospace"
-            android:background="@drawable/panel" />
+            android:text="Ready"
+            android:textColor="#00FFAA"
+            android:paddingTop="12dp" />
 
     </LinearLayout>
 </ScrollView>

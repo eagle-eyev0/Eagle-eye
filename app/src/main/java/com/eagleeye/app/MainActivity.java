@@ -24,6 +24,17 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+// Bind TextViews
+txtRiskScore = findViewById(R.id.txtRiskScore);
+txtMicStatus = findViewById(R.id.txtMicStatus);
+txtDupCount = findViewById(R.id.txtDupCount);
+txtRiskListHint = findViewById(R.id.txtRiskListHint);
+
+// Bind Buttons
+btnScanPerms = findViewById(R.id.btnScanPerms);
+btnScanDup = findViewById(R.id.btnScanDup);
+btnPickFolder = findViewById(R.id.btnPickFolder);
+
         // UI refs
         txtRiskScore = findViewById(R.id.txtRiskScore);
         txtMicStatus = findViewById(R.id.txtMicStatus);
